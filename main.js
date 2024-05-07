@@ -8,8 +8,6 @@ async function fetchRecipes(query){
 
 function handleSubmit (e){
     e.preventDefault();
-    console.log(e.currentTarget.query)
+    console.log(e.currentTarget.query.value);
 }
 
-form.addEventListener("submit", handleSubmit)
-fetchRecipes("pizza")
