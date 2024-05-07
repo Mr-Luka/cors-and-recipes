@@ -1,5 +1,6 @@
 const baseEndpoint = `https://recipes.beginnerjavascript.com/api`;
 const form = document.querySelector("form.search");
+const recipesGrid = document.querySelector(".recipes");
 async function fetchRecipes(query){
     const res = await fetch(`${baseEndpoint}?q=${query}`);
     const data = await res.json();
@@ -31,6 +32,7 @@ function displayRecipes(recipes) {
         </div>`
     )
     console.log(html)
+    recipesGrid.innerHTML = html.join("");
 }
 
 form.addEventListener("submit", handleSubmit)
