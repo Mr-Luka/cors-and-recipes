@@ -8,6 +8,13 @@ async function fetchRecipes(query){
 
 function handleSubmit (e){
     e.preventDefault();
-    console.log(e.currentTarget.query.value);
+    const form = e.currentTarget;
+    //turn the form off
+    form.submit.disabled = true;
+    // submit the search
+    fetchRecipes(form.query.value)
+    console.log(form.query.value);
 }
 
+form.addEventListener("submit", handleSubmit)
+fetchRecipes("pizza")
