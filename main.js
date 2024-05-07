@@ -11,12 +11,16 @@ async function handleSubmit (e){
     e.preventDefault();
     const el = e.currentTarget;
     console.log(el.query.value);
+    fetchAndDisplay(form.query.value)
+}
+
+async function fetchAndDisplay(query){
     //turn the form off
-    el.submit.disabled = true;
+    form.submit.disabled = true;
     // submit the search
     const recipes = await fetchRecipes(form.query.value)
     console.log(recipes)
-    el.submit.disabled = false;
+    form.submit.disabled = false;
     displayRecipes(recipes.results)
 }
 
@@ -29,6 +33,7 @@ function displayRecipes(recipes) {
             ${recipe.thumbnail && 
                 `<img src="${recipe.thumbnail}"
                     alt="${recipe.title}"/>`}
+                    <a href="${recipe.href}">View Recipe</a>
         </div>`
     )
     console.log(html)
@@ -36,4 +41,4 @@ function displayRecipes(recipes) {
 }
 
 form.addEventListener("submit", handleSubmit)
-fetchRecipes("pizza")
+fetchAndDisplay("pizza")
